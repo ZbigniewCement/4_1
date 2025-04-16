@@ -15,21 +15,42 @@ class Main {
     try {
       Service s = new Service();
       Scanner scanner = new Scanner(System.in);
+      boolean dziala = true;
 
-      System.out.print("Podaj imię studenta: ");
-      String name = scanner.nextLine();
+      while (dziala) {
+        System.out.println("Wybierz opcję:");
+        System.out.println("1. Dodaj studenta");
+        System.out.println("2. Wyświetl studentów");
+        System.out.println("3. Zakończ ");
+        System.out.println(" ");
+        
+        int menu = scanner.nextInt(); // Wybór opcji
 
-      System.out.print("Podaj wiek studenta: ");
-      int age = Integer.parseInt(scanner.nextLine());
-
-      s.addStudent(new Student(name, age));
-
-      var students = s.getStudents();
-      for(Student current : students) {
-        System.out.println(current.ToString());
+        switch (menu) {
+          case 1:
+            System.out.print("Podaj imię studenta: ");
+            String name = scanner.next();
+            System.out.print("Podaj wiek studenta: ");
+            int age = scanner.nextInt();
+            s.addStudent(new Student(name, age));
+            break;
+          case 2:
+            var students = s.getStudents();
+            for (Student current : students) {
+              System.out.println(current.ToString());
+            }
+            break;
+          case 3:
+            dziala = false; 
+            break;
+          default:
+            System.out.println("Nieznana opcja, spróbuj ponownie.");
+            break;
+        }
       }
-    } catch (IOException e) {
 
+      scanner.close();
+    } catch (IOException e) {
     }
   }
 }

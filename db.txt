@@ -1,4 +1,3 @@
 Marian 3
-maciej 2
-wojciech 3
-kacper 7
+wojciech 2
+andrzej 20
