@@ -1,3 +1,2 @@
-Marian 3
-wojciech 2
-andrzej 20
+Jan Kowalski 20
+Zbigniew Zarzecki 70

@@ -30,14 +30,17 @@ class Main {
           case 1:
             System.out.print("Podaj imię studenta: ");
             String name = scanner.next();
+            System.out.print("Podaj nazwisko studenta: ");
+            String nazwisko = scanner.next();
             System.out.print("Podaj wiek studenta: ");
             int age = scanner.nextInt();
-            s.addStudent(new Student(name, age));
+            s.addStudent(new Student(name, nazwisko, age));
             break;
           case 2:
             var students = s.getStudents();
             for (Student current : students) {
               System.out.println(current.ToString());
+              System.out.println(" ");
             }
             break;
           case 3:
