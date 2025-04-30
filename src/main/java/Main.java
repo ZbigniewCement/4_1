@@ -53,7 +53,7 @@ public class Main {
 
              
               if (year > 0 && month > 0 && day > 0 && day <= 31) break;
-              System.out.println("❌ Nieprawidłowa data. Spróbuj ponownie.");
+              System.out.println("Nieprawidłowa data. Spróbuj ponownie.");
             }
 
             scanner.nextLine(); 
