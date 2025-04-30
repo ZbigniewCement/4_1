@@ -1,5 +1,4 @@
 public class Student {
-
   private String Name;
   private int Age;
   private String Nazwisko;
@@ -7,8 +6,8 @@ public class Student {
 
   public Student(String name, String nazwisko, int age, String birthDate) {
     Name = name;
-    Age = age;
     Nazwisko = nazwisko;
+    Age = age;
     BirthDate = birthDate;
   }
 
@@ -23,19 +22,18 @@ public class Student {
 
   public static Student Parse(String str) {
     String[] data = str.split(" ");
-    if (data.length != 4)
-      return new Student("Parse", "--", -1, "0000-00-00");
+    if (data.length != 4) 
+      return new Student("Parse", "--", -1, "--");
 
-    String name = data[0];
-    String nazwisko = data[1];
+    String Name = data[0];
+    String Nazwisko = data[1];
     int wiek;
     try {
       wiek = Integer.parseInt(data[2]);
     } catch (NumberFormatException e) {
-      return new Student("Parse", "--", -1, "0000-00-00");
+      return new Student("Parse", "--", -1, "--");
     }
-
-    String birthDate = data[3];
-    return new Student(name, nazwisko, wiek, birthDate);
+    String BirthDate = data[3];
+    return new Student(Name, Nazwisko, wiek, BirthDate);
   }
 }
