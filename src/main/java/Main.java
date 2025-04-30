@@ -6,11 +6,10 @@ Kod bazowy programu Commit4_0:
 • Klasa Service obsługuje odczyt i zapis do pliku bazy danych.
 • Klasa Student reprezentuje pojedynczego studenta (Imię, Wiek).
 */
-
 import java.io.IOException;
 import java.util.Scanner;
 
-class Main {
+public class Main {
   public static void main(String[] args) {
     try {
       Service s = new Service();
@@ -23,19 +22,45 @@ class Main {
         System.out.println("2. Wyświetl studentów");
         System.out.println("3. Zakończ ");
         System.out.println(" ");
-        
-        int menu = scanner.nextInt(); // Wybór opcji
+
+        int menu = scanner.nextInt();
+        scanner.nextLine();
 
         switch (menu) {
           case 1:
             System.out.print("Podaj imię studenta: ");
-            String name = scanner.next();
+            String name = scanner.nextLine();
+
             System.out.print("Podaj nazwisko studenta: ");
-            String nazwisko = scanner.next();
-            System.out.print("Podaj wiek studenta: ");
-            int age = scanner.nextInt();
-            s.addStudent(new Student(name, nazwisko, age));
+            String nazwisko = scanner.nextLine();
+
+            int age;
+            while (true) {
+              System.out.print("Podaj wiek studenta: ");
+              age = scanner.nextInt();
+              if (age > 0) break; 
+              System.out.println("Wiek musi być liczbą dodatnią.");
+            }
+
+            int year, month, day;
+            while (true) {
+              System.out.print("Podaj rok urodzenia: ");
+              year = scanner.nextInt();
+              System.out.print("Podaj miesiąc urodzenia: ");
+              month = scanner.nextInt();
+              System.out.print("Podaj dzień urodzenia: ");
+              day = scanner.nextInt();
+
+             
+              if (year > 0 && month > 0 && day > 0 && day <= 31) break;
+              System.out.println("❌ Nieprawidłowa data. Spróbuj ponownie.");
+            }
+
+            scanner.nextLine(); 
+            String birthDate = String.format("%04d-%02d-%02d", year, month, day);
+            s.addStudent(new Student(name, nazwisko, age, birthDate));
             break;
+
           case 2:
             var students = s.getStudents();
             for (Student current : students) {
@@ -43,9 +68,11 @@ class Main {
               System.out.println(" ");
             }
             break;
+
           case 3:
-            dziala = false; 
+            dziala = false;
             break;
+
           default:
             System.out.println("Nieznana opcja, spróbuj ponownie.");
             break;
@@ -54,6 +81,7 @@ class Main {
 
       scanner.close();
     } catch (IOException e) {
+      System.out.println("Wystąpił błąd wejścia/wyjścia: " + e.getMessage());
     }
   }
 }
